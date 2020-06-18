@@ -83,19 +83,6 @@ namespace E_Commerce.Controllers
             }
         }
 
-        [HttpGet("dashboard")]
-        public IActionResult Dashboard()
-        {
-            int? LoggedUser = HttpContext.Session.GetInt32("UserId");
-            if(LoggedUser == null)
-            {
-                return RedirectToAction("Register");
-            }
-            User userInSession = dbContext.Users.FirstOrDefault(u => u.UserId == (int)LoggedUser);
-        
-            return View("Dashboard", userInSession);
-        }
-
         [HttpGet("logout")]
         public IActionResult Logout()
         {
@@ -114,9 +101,56 @@ namespace E_Commerce.Controllers
             return View("LoggedOut");
         }
 
-        public IActionResult Privacy()
+        [HttpGet("dashboard")]
+        public IActionResult Dashboard()
         {
-            return View();
+            int? LoggedUser = HttpContext.Session.GetInt32("UserId");
+            if(LoggedUser == null)
+            {
+                return RedirectToAction("Register");
+            }
+            User userInSession = dbContext.Users.FirstOrDefault(u => u.UserId == (int)LoggedUser);
+        
+            return View("Dashboard", userInSession);
+        }
+
+        [HttpGet("products")]
+        public IActionResult Products()
+        {
+            int? LoggedUser = HttpContext.Session.GetInt32("UserId");
+            if(LoggedUser == null)
+            {
+                return RedirectToAction("Register");
+            }
+            User userInSession = dbContext.Users.FirstOrDefault(u => u.UserId == (int)LoggedUser);
+        
+            return View("Products", userInSession);
+        }
+
+        [HttpGet("orders")]
+        public IActionResult Orders()
+        {
+            int? LoggedUser = HttpContext.Session.GetInt32("UserId");
+            if(LoggedUser == null)
+            {
+                return RedirectToAction("Register");
+            }
+            User userInSession = dbContext.Users.FirstOrDefault(u => u.UserId == (int)LoggedUser);
+        
+            return View("Orders", userInSession);
+        }
+
+        [HttpGet("customers")]
+        public IActionResult Customers()
+        {
+            int? LoggedUser = HttpContext.Session.GetInt32("UserId");
+            if(LoggedUser == null)
+            {
+                return RedirectToAction("Register");
+            }
+            User userInSession = dbContext.Users.FirstOrDefault(u => u.UserId == (int)LoggedUser);
+        
+            return View("Customers", userInSession);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
